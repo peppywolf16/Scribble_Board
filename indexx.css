@@ -1,0 +1,246 @@
+* {
+  margin: 0%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  overflow-y: auto;
+  padding: 20px;
+  user-select: none;
+}
+
+#board {
+  height: 100%;
+  width: 100%;
+}
+
+canvas {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  box-sizing: border-box;
+  padding: 3px;
+  box-shadow: rgba(101, 86, 237, 0.58) 0px 2px 8px 0px;
+  border-radius: 10px;
+  border: 1px solid white;
+  position: relative;
+  z-index: 10;
+  background-color: white;
+}
+
+.tool {
+  margin: 5px;
+}
+
+.tool img {
+  width: 30px;
+  height: 30px;
+}
+
+.color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid grey;
+  margin: 5px;
+  box-sizing: border-box;
+}
+
+.activeColor {
+  outline: 2px solid #0f01ff;
+  outline-offset: 3px;
+  box-sizing: border-box;
+}
+
+.activeTool > img {
+  filter: invert(9%) sepia(100%) saturate(6195%) hue-rotate(249deg)
+    brightness(97%) contrast(138%);
+}
+
+#black {
+  background-color: black;
+}
+
+#black .activeColor {
+  border: 3px solid rgb(212, 0, 0);
+  box-sizing: border-box;
+}
+
+#blue {
+  background-color: rgb(27, 177, 226);
+}
+
+#red {
+  background-color: rgb(254, 75, 75);
+}
+
+#green {
+  background-color: rgb(61, 235, 61);
+}
+
+#customColor {
+  background-color: yellow;
+}
+
+#colorPicker {
+  opacity: 0;
+  cursor: pointer;
+}
+
+#fillColor {
+  box-sizing: border-box;
+}
+
+#size_slider {
+  transform: rotate(0.75turn);
+  margin: 32px -36px;
+  width: 98px;
+  height: 54px;
+}
+
+#toolPalette1,
+#toolPalette2 {
+  height: 100vh;
+  box-sizing: border-box;
+  border-radius: 25px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#toolPalette1 {
+  left: 5px;
+}
+
+#toolPalette2 {
+  right: 5px;
+}
+
+#hall3 {
+  width: 50px;
+  height: 50px;
+}
+
+#pens {
+  margin-top: 0px;
+}
+
+#shapes ul li {
+  margin: 8px 0px;
+}
+
+#otherTools li {
+  margin: 4px 0px;
+}
+
+button {
+  box-sizing: border-box;
+  padding: 5px 6px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+}
+
+button:hover {
+  padding: 5px 6px;
+  border-radius: 5px;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+#hall3logo {
+  filter: invert(0);
+  box-sizing: border-box;
+  width: 50px;
+  height: 50px;
+}
+
+.tooltiptext {
+  box-sizing: border-box;
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  font-size: 15px;
+  background-color: rgba(255, 255, 255, 1);
+  color: rgb(0, 0, 0);
+  text-align: center;
+  border-radius: 0.25em;
+  white-space: nowrap;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 0.5px solid black;
+  position: absolute;
+  z-index: 1;
+  transition-property: visibility;
+  transition-delay: 0s;
+}
+.color .tooltiptext {
+  box-sizing: border-box;
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  font-size: 15px;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  border-radius: 0.25em;
+  white-space: nowrap;
+  /* padding-left: 10px;
+  padding-right: 10px; */
+  /* position: absolute; */
+  z-index: 1;
+}
+
+#colors li .tooltiptext {
+  box-sizing: border-box;
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  font-size: 15px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgb(0, 255, 64);
+  text-align: center;
+  border-radius: 0.25em;
+  white-space: nowrap;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: absolute;
+  z-index: 1;
+  transition-property: visibility;
+  transition-delay: 0s;
+}
+.tool:hover .tooltiptext {
+  visibility: visible;
+  transition-delay: 0.3s;
+}
+.otherTools:hover .tooltiptext {
+  visibility: visible;
+  transition-delay: 0.3s;
+}
+
+.color,
+.tool,
+.clear-canvas,
+#size_slider,
+#canvasBackgroundColor:hover {
+  cursor: pointer;
+}
